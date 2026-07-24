@@ -1,0 +1,489 @@
+/* Train's own, fully independent stylesheet. Every class here is
+   Train-only (train* prefix) — none are shared with FlightSaleForm.module.css,
+   so editing either file can never affect the other's UI. Column tracks,
+   widths and heights below are sized for Train's own field set (PNR/
+   journey/passenger columns), not copied from Flight's layout. */
+
+:root {
+  --t-navy:    #0f3460;
+  --t-blue:    #1a3a6b;
+  --t-orange:  #e8400a;
+  --t-orange-dark: #b8380a;
+  --t-sky:     #2563eb;
+  --t-light:   #eef4ff;
+  --t-border:  #d0dce8;
+  --t-text:    #1a1a2e;
+  --t-muted:   #4a5568;
+  --t-faint:   #5b6779;
+  --t-white:   #ffffff;
+  --t-bg:      #f4f7fb;
+  --t-mint:    #10b981;
+  --t-red:     #dc2626;
+}
+
+/* ── PAGE ─────────────────────────────────── */
+.trainPage {
+  min-height: 100vh;
+  background: var(--t-bg);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── NAVBAR ───────────────────────────────── */
+.trainNavbar {
+  background: var(--t-navy);
+  border-bottom: 3px solid var(--t-orange);
+  height: 56px;
+  padding: 0 28px;
+  display: flex; align-items: center; gap: 16px;
+  position: sticky; top: 0; z-index: 20;
+  box-shadow: 0 2px 12px rgba(15,52,96,.3);
+}
+.trainNavLogo {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 16px; font-weight: 700; color: #fff;
+  letter-spacing: -.2px;
+}
+.trainNavLogo span:first-child {
+  background: var(--t-orange);
+  border-radius: 8px;
+  padding: 2px 6px;
+  font-size: 18px;
+}
+.trainNavCenter { flex: 1; display: flex; justify-content: center; }
+.trainNavRight { display: flex; gap: 10px; }
+.trainBtnGhost {
+  padding: 7px 16px;
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.25);
+  border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; color: #fff;
+  transition: all .15s;
+}
+.trainBtnGhost:hover { background: rgba(255,255,255,.2); }
+
+/* ── BODY ─────────────────────────────────── */
+.trainBody { padding: 20px 28px; max-width: 1400px; margin: 0 auto; width: 100%; }
+
+/* ── FORM CARD ────────────────────────────── */
+.trainFormCard {
+}
+
+/* ── BANNERS ──────────────────────────────── */
+.trainErrBanner {
+  background: #fff5f5; border: 1.5px solid #fca5a5;
+  border-radius: 8px; padding: 12px 16px;
+  font-size: 12px; color: #b91c1c; margin-bottom: 16px;
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.trainSuccessBanner {
+  background: #f0fdf4; border: 1.5px solid #bbf7d0;
+  border-radius: 8px; padding: 12px 16px;
+  font-size: 13px; font-weight: 600; color: #15803d; margin-bottom: 16px;
+}
+
+/* ── ACCORDION (collapsible common-field sections) ─────── */
+.trainAccordionHead {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%;
+  font-size: 12px; font-weight: 600; color: var(--t-white);
+  text-transform: uppercase; letter-spacing: 3px;
+  background: var(--t-blue);
+  margin: 15px 0 25px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none; cursor: pointer; font-family: inherit;
+  transition: background .15s;
+}
+.trainAccordionHead:hover { background: var(--t-navy); }
+.trainAccordionHeadOpen { border-radius: 6px 6px 0 0; margin-bottom: 0; }
+.trainAccordionTitle { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.trainAccordionRight { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.trainAccordionSubtitle {
+  font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0;
+  color: rgba(255,255,255,.88);
+  max-width: 380px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.trainAccordionChevron { font-size: 11px; flex-shrink: 0; width: 12px; text-align: center; }
+.trainAccordionBody {
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding-top: 14px;
+  margin: 0 0 25px;
+  background: #fbfdff;
+}
+.trainAccordionBody .trainCompactRow { margin-bottom: 14px; }
+
+/* Wraps trainInvoiceGrid / trainJourneyTable — those are already
+   width: fit-content, but this wrapping accordion body div is a plain
+   block box with no width of its own, so it needs fit-content too or
+   its border stretches past the last column, leaving an empty bordered
+   strip after the real table. */
+.trainInvoiceAccordionBody {
+  border: 1.5px solid #475569;
+  border-top: none;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.trainPaxBtns { display: flex; align-items: center; gap: 8px; }
+.trainPaxCount {
+  font-size: 12px; color: #fff;
+  font-weight: 600; text-transform: none;
+  background: rgba(255,255,255,.2);
+  padding: 3px 10px; border-radius: 100px;
+}
+.trainManageBtn {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .3px;
+  color: var(--t-navy); background: #fff;
+  border: none; border-radius: 6px;
+  padding: 6px 14px; cursor: pointer;
+  transition: all .15s;
+}
+.trainManageBtn:hover { background: var(--t-orange); color: #fff; }
+
+/* ── CIRCLE BTN ───────────────────────────── */
+.trainCircleBtn {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--t-light);
+  border: 1.5px solid var(--t-border);
+  color: var(--t-navy); font-size: 18px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .15s; flex-shrink: 0;
+}
+.trainCircleBtn:hover { background: var(--t-navy); color: #fff; border-color: var(--t-navy); }
+
+.trainPaxRowTotal {
+  font-size: 13px; font-weight: 700;
+  color: var(--t-orange-dark);
+  font-family: 'JetBrains Mono', monospace;
+}
+.trainRemovePaxBtn {
+  margin-left: auto; background: #fff1f2;
+  border: 1px solid #fca5a5; border-radius: 6px;
+  padding: 4px 12px; font-size: 11px;
+  color: var(--t-red); cursor: pointer; font-weight: 600;
+}
+.trainRemovePaxBtn:hover { background: #fee2e2; }
+
+/* ── ADDITIONAL DETAILS & SUMMARY  +  GRAND TOTAL — two cards, side by side ── */
+.trainBottomGrid {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: start;
+  align-items: start;
+  gap: 20px;
+  margin: 15px 20px 25px;
+  width: fit-content;
+}
+@media (max-width: 900px) {
+  .trainBottomGrid { grid-template-columns: 1fr; }
+}
+.trainBottomCard {
+  display: flex; flex-direction: column;
+  border: 1.5px solid #475569;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.trainBottomCard:first-child { width: fit-content; }
+.trainBottomCard .trainAccordionHead { margin: 0; border-radius: 0; cursor: default; }
+.trainBottomCard .trainAccordionHead:hover { background: var(--t-blue); }
+.trainBottomCard .trainAccordionBody { flex: 1; margin: 0; border: none; border-radius: 0; }
+.trainBottomCard .trainGtVal { font-size: 16px; }
+.trainBottomCard:last-child { width: fit-content; min-width: 320px; }
+.trainBottomCard:last-child .trainAccordionBody {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 18px;
+  width: 100%;
+}
+.trainBottomCard:last-child .trainSaveBtn { width: 220px; flex-shrink: 0; }
+
+.trainGtVal {
+  font-size: 28px; font-weight: 700;
+  color: var(--t-orange);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -.5px;
+}
+
+.trainSaveBtn {
+  width: 200px;
+  padding: 12px 36px;
+  background: var(--t-navy);
+  color: #fff; border: none; border-radius: 9px;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; letter-spacing: .3px;
+  box-shadow: 0 4px 16px rgba(15,52,96,.35);
+  transition: all .2s;
+  display: flex; align-items: center; gap: 8px;
+  height: 46px;
+  position: relative;
+  overflow: hidden;
+}
+.trainSaveBtn::after {
+  content: '';
+  position: absolute; left: 0; top: 0;
+  width: 4px; height: 100%;
+  background: var(--t-orange);
+}
+.trainSaveBtn:hover {
+  background: var(--t-blue);
+  box-shadow: 0 6px 24px rgba(15,52,96,.45);
+  transform: translateY(-1px);
+}
+.trainSaveBtn:active { transform: translateY(0); }
+
+/* ── FIELD GROUP (one column inside a strip) ─ */
+.trainFG {
+  display: flex; flex-direction: column; gap: 0;
+  min-width: 128px; flex-shrink: 0;
+  border-right: 1px solid #475569;
+}
+.trainFG:last-child { border-right: none; }
+
+.trainFGLabel {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--t-navy);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 7px 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+/* ── INPUTS ───────────────────────────────── */
+.trainFG input,
+.trainFG select {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 0;
+  font-size: 12.5px;
+  font-family: inherit;
+  background: #fff;
+  color: var(--t-text);
+  outline: none;
+  transition: background .15s, box-shadow .15s;
+  width: 100%;
+  height: 38px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.trainFG input::placeholder { color: #8a95a6; font-size: 12px; }
+.trainFG input:focus,
+.trainFG select:focus {
+  z-index: 1;
+  position: relative;
+}
+.trainFG input:not(:placeholder-shown) { color: var(--t-text); font-weight: 500; }
+.trainFG .trainHintErr { padding: 0 8px 5px; }
+
+.trainOk  { background: #f0fdf4 !important; box-shadow: inset 0 0 0 2px var(--t-mint) !important; }
+.trainErr { background: #fff5f5 !important; box-shadow: inset 0 0 0 2px var(--t-red) !important; }
+.trainHintErr { font-size: 10px; color: var(--t-red); margin-top: 3px; font-weight: 600; }
+
+/* ── PASSENGERS POPUP ─────────────────────────────────── */
+.trainModalOverlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(15,23,42,.55);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.trainModalCard {
+  background: #fff; border-radius: 14px;
+  width: 100%; max-width: 1080px; max-height: 88vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  overflow: hidden;
+}
+.trainModalHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--t-navy); color: #fff;
+  padding: 16px 22px; font-size: 15px; font-weight: 700;
+  flex-shrink: 0;
+}
+.trainModalHeader em { font-style: normal; font-weight: 500; opacity: .7; margin-left: 4px; }
+.trainModalClose {
+  background: rgba(255,255,255,.12); border: none; color: #fff;
+  width: 28px; height: 28px; border-radius: 7px; cursor: pointer;
+  font-size: 13px;
+}
+.trainModalClose:hover { background: rgba(255,255,255,.25); }
+.trainModalBody {
+  padding: 20px 22px; overflow-y: auto; flex: 1;
+  background: var(--t-bg);
+}
+.trainModalFooter {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 22px; border-top: 2px solid var(--t-border);
+  background: var(--t-light); flex-shrink: 0; gap: 16px; flex-wrap: wrap;
+}
+
+/* ── PARTY OVERRIDE MODAL (passenger-specific Party/GSTIN/Place of Supply) ── */
+.trainOverrideModalField { margin-bottom: 14px; }
+.trainOverrideModalField:last-child { margin-bottom: 0; }
+.trainOverrideModalField .trainOverrideInput { width: 100%; }
+.trainOverrideInput {
+  flex: 1; min-width: 180px;
+  padding: 7px 10px; border: 1.5px solid #fbbf24;
+  background: #fffbeb; border-radius: 6px;
+  font-size: 12.5px; outline: none; height: 32px;
+}
+.trainOverrideInput:focus { border-color: var(--t-orange); box-shadow: 0 0 0 3px rgba(232,64,10,.12); }
+
+.trainPaxSubheading {
+  font-size: 11px; font-weight: 700; color: var(--t-muted);
+  text-transform: uppercase; letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width:600px)  {
+  .trainFG { min-width: 108px; }
+  .trainModalOverlay { padding: 0; }
+  .trainModalCard { max-height: 100vh; height: 100vh; border-radius: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Train-only table/grid layouts below — sized for Train's own column
+   counts and field types, using minmax(floor, max-content) tracks so
+   each column hugs its actual content (input text, date, short code)
+   instead of an arbitrary fixed px width, plus `width: fit-content` on
+   the container: grid/flex containers are block-level boxes that
+   default to filling their parent's width regardless of how the
+   tracks/children are sized, so without this the bordered box would
+   stretch to the page's max-width, leaving a large empty bordered
+   strip after the last column. fit-content makes the border hug
+   exactly the content's total width instead, and the paired
+   max-width: 100% / overflow-x: auto lets the same table scroll
+   within its own box on narrow viewports rather than breaking the
+   page layout.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.trainPaxTableHead {
+  background: var(--t-navy); color: #fff;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px;
+  text-align: center; padding: 7px 8px;
+  border-right: 1px solid rgba(255,255,255,.15);
+  border-bottom: 1px solid #475569;
+}
+.trainPaxTableCell {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 6px;
+  border-right: 1px solid #475569;
+  border-bottom: 1px solid #475569;
+  min-width: 0;
+}
+.trainPaxTableCell input,
+.trainPaxTableCell select {
+  width: 100%; height: 36px;
+  border: none; background: transparent;
+  padding: 6px 6px; font-size: 12.5px; font-family: inherit;
+  color: var(--t-text); outline: none; min-width: 0;
+}
+.trainPaxTableCell input:focus,
+.trainPaxTableCell select:focus { background: var(--t-light); }
+
+.trainJourneyTable {
+  display: grid;
+  grid-template-columns:
+    minmax(115px, max-content)  /* PNR Number */
+    minmax(125px, max-content)  /* Travel Date */
+    minmax(78px,  max-content)  /* Class */
+    minmax(105px, max-content)  /* From */
+    minmax(105px, max-content)  /* To */
+    minmax(115px, max-content); /* Train No */
+  width: fit-content;
+  border: 1.5px solid #475569;
+  margin: 8px 20px 18px;
+  background: #fff;
+}
+.trainJourneyTable > div:nth-child(6n) { border-right: none; }
+.trainJourneyTable > div:nth-last-child(-n+6) { border-bottom: none; }
+
+.trainPassengerTable {
+  display: grid;
+  grid-template-columns:
+    minmax(150px, max-content)  /* Passenger */
+    minmax(105px, max-content)  /* Cell No. */
+    minmax(92px,  max-content)  /* Ticket No. */
+    minmax(72px,  max-content)  /* Seat No. */
+    minmax(92px,  max-content)  /* Type */
+    minmax(92px,  max-content)  /* Status */
+    minmax(68px,  max-content)  /* Basic */
+    minmax(68px,  max-content)  /* Fare */
+    minmax(68px,  max-content)  /* IRCTC */
+    minmax(68px,  max-content)  /* Gateway */
+    minmax(68px,  max-content)  /* Other */
+    minmax(68px,  max-content)  /* Markup */
+    minmax(82px,  max-content)  /* Total */
+    minmax(92px,  max-content); /* Same Party */
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1.5px solid #475569;
+  margin: 8px 20px 18px;
+  background: #fff;
+}
+.trainPassengerTable > div:nth-child(14n) { border-right: none; }
+.trainPassengerTable > div:nth-last-child(-n+14) { border-bottom: none; }
+
+/* Same Party checkbox + Remove button cell (mirrors FlightSaleForm's
+   .paxTablePartyCell / .checkboxLbl). */
+.trainPaxTablePartyCell {
+  flex-direction: row; align-items: flex-start; gap: 4px;
+  padding: 6px 8px;
+}
+.trainPaxTablePartyCell .trainRemovePaxBtn { padding: 0px 5px; font-size: 10px; margin-left: 0; }
+
+.trainCheckboxLbl {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 11.5px; font-weight: 600; color: var(--t-muted);
+  cursor: pointer; white-space: nowrap;
+}
+.trainCheckboxLbl input { width: 15px; height: 15px; accent-color: var(--t-navy); cursor: pointer; }
+
+/* Train's own Invoice Details grid — sized for exactly Train's 7
+   fields (Ref, Company, Service, Party Name, GSTIN, Place of Supply,
+   Due Date; Train has no Invoice Type field). Each track keeps a
+   content-driven floor (minmax) so short fields like Ref don't get
+   squeezed, while the fr weight still governs any share of extra
+   space once the fit-content container has room. */
+.trainInvoiceGrid {
+  display: grid;
+  grid-template-columns:
+    minmax(84px,  1fr)    /* Ref */
+    minmax(168px, 2.2fr)  /* Company */
+    minmax(138px, 1.8fr)  /* Service */
+    minmax(188px, 2.5fr)  /* Party Name */
+    minmax(138px, 1.8fr)  /* GSTIN */
+    minmax(124px, 1.6fr)  /* Place of Supply */
+    minmax(110px, 1.4fr); /* Due Date */
+  width: fit-content;
+  overflow: visible;
+  margin: 8px 20px 18px;
+  border: 1.5px solid #475569;
+  background: #fff;
+}
+.trainInvoiceGrid .trainFG { min-width: 0; }
+
+/* Train's own Additional Details row (Supplier, Team Member) —
+   fit-content so the card hugs just these two fields. */
+.trainCompactRow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 8px 20px 18px;
+  border: 1.5px solid #475569;
+  border-radius: 0px;
+  background: #fff;
+}

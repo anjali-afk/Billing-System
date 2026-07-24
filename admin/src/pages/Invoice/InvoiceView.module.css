@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+.invoicePage {
+  margin: 0;
+  padding: 0;
+  background: #f4f7fb;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  color: #1a1a2e;
+  line-height: 1.2;
+}
+
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 12px 24px;
+  background: #fff;
+  border-bottom: 2px solid #005596;
+  box-shadow: 0 2px 12px rgba(0, 85, 150, 0.10);
+}
+
+.topBar button {
+  background: #005596;
+  color: #fff;
+  padding: 8px 22px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.topBar button.ghost {
+  background: #fff;
+  color: #005596;
+  border: 1.5px solid #005596;
+}
+
+.sigFont {
+  font-family: 'Dancing Script', cursive;
+  font-size: 24px;
+  color: #003d6e;
+  display: inline-block;
+  transform: rotate(-2deg);
+  margin: 6px 0 4px;
+}
+
+@media print {
+  /* This page renders inside DashboardLayout (sidebar + routed content
+     still in the DOM around it), so hiding just .topBar isn't enough —
+     window.print() would otherwise print the sidebar and page chrome
+     too. Hiding everything in the document and re-revealing only the
+     invoice subtree is what makes print output just the invoice,
+     regardless of what layout wraps this page. */
+  body * { visibility: hidden !important; }
+  .invoicePage, .invoicePage * { visibility: visible !important; }
+  .invoicePage {
+    position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0;
+    background: #fff !important;
+  }
+  .topBar { display: none !important; }
+  .a4Outer { margin: 0 !important; box-shadow: none !important; width: 100% !important; }
+}

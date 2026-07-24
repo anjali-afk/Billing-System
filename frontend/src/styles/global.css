@@ -1,0 +1,50 @@
+/* ── RESET & BASE ───────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:      #1a56db;
+  --blue-lt:   #eff6ff;
+  --blue-dk:   #1344b8;
+  --navy:      #0f1f3d;
+  --mint:      #10b981;
+  --red:       #ef4444;
+  --amber:     #f59e0b;
+  --slate:     #475569;
+  --border:    #cbd5e1;
+  --surf:      #f8fafc;
+  --bg:        #f1f5f9;
+  --ink:       #0f172a;
+  --white:     #ffffff;
+  --radius:    10px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+  --shadow:    0 2px 12px rgba(0,0,0,.08);
+  --placeholder: #94a3b8;
+  --focus-ring: rgba(26, 86, 219, 0.18);
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; }
+
+/* Global placeholder, selection, and focus-visible outline styles */
+::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+::selection {
+  background: var(--blue-lt);
+  color: var(--blue-dk);
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}

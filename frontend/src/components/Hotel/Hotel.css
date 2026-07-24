@@ -1,0 +1,652 @@
+/* {page / header} */
+.qf-page{
+    background: #f4f7fb;
+    min-height: 100vh;
+    padding-bottom: 8px;
+}
+
+.qf-header{
+    background: #0f3460;
+    height: 56px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 2px 12px rgba(15, 52, 96, .3);
+}
+
+.qf-header-content{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.2px;
+}
+
+.qf-header-content h1{
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.qf-header-line{
+    flex: 1;
+}
+
+.qf-back-button{
+    padding: 7px 16px;
+    background: rgba(255, 255, 255, .1);
+    border: 1.5px solid rgba(255, 255, 255, .25);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+    transition: all .15s;
+}
+
+.qf-back-button:hover{
+    background: rgba(255, 255, 255, .18);
+}
+
+/* {ref row} */
+.qf-ref-row{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 20px 28px;
+    padding: 18px 24px;
+    background: #fff;
+    border: 1px solid #0f172a;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    flex-wrap: wrap;
+}
+
+.qf-system-ref-field,
+.qf-lead-ref-field{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.qf-system-ref-field label,
+.qf-lead-ref-field label{
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+}
+
+.qf-system-ref-field input,
+.qf-lead-ref-field input{
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    outline: none;
+    min-width: 200px;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.qf-lead-ref-field input:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
+.qf-system-ref-field input{
+    background: #f4f7fb;
+    color: #5b6779;
+    font-style: italic;
+    cursor: not-allowed;
+}
+
+/* {generic section box shell — reused per section but each section keeps
+   its own uniquely-named box/header/title/body classes} */
+.qf-agency-box,
+.qf-pax-summary-box,
+.qf-hotel-block-box,
+.qf-activity-block-box,
+.qf-price-payment-box{
+    margin: 0 28px 24px;
+    background: #fff;
+    border: 1px solid #0f172a;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    overflow: hidden;
+}
+
+.qf-agency-header,
+.qf-pax-summary-header,
+.qf-hotel-block-header,
+.qf-activity-block-header,
+.qf-price-payment-header{
+    padding: 12px 24px;
+    background: #0f3460;
+}
+
+.qf-agency-title,
+.qf-pax-summary-title,
+.qf-hotel-block-title,
+.qf-activity-block-title,
+.qf-price-payment-title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .2px;
+}
+
+.qf-agency-body,
+.qf-pax-summary-body,
+.qf-hotel-block-body,
+.qf-activity-block-body,
+.qf-price-payment-body{
+    padding: 22px 24px;
+}
+
+/* {shared field look} */
+.qf-agency-name-field label,
+.qf-contact-name-field label,
+.qf-mobile-no-field label,
+.qf-agency-city-field label,
+.qf-summary-nights-field label,
+.qf-summary-adults-field label,
+.qf-summary-cwb-field label,
+.qf-summary-cnb-field label,
+.qf-summary-infant-field label,
+.qf-summary-total-pax-field label,
+.qf-hotel-checkin-field label,
+.qf-hotel-nights-field label,
+.qf-hotel-checkout-field label,
+.qf-hotel-city-field label,
+.qf-hotel-name-field label,
+.qf-hotel-room-category-field label,
+.qf-hotel-room-field label,
+.qf-hotel-awb-field label,
+.qf-hotel-cwb-field label,
+.qf-hotel-cnb-field label,
+.qf-hotel-awb-rate-field label,
+.qf-hotel-cwb-rate-field label,
+.qf-hotel-cnb-rate-field label,
+.qf-hotel-total-field label,
+.qf-hotel-status-field label,
+.qf-hotel-confirmation-number-field label,
+.qf-hotel-confirmed-by-field label,
+.qf-hotel-billing-status-field label,
+.qf-hotel-supplier-field label,
+.qf-hotel-currency-field label,
+.qf-hotel-room-rate-field label,
+.qf-hotel-remark-field label,
+.qf-activity-date-field label,
+.qf-activity-pickup-time-field label,
+.qf-activity-tour-type-field label,
+.qf-activity-tour-code-field label,
+.qf-activity-name-field label,
+.qf-activity-adult-rate-field label,
+.qf-activity-child-rate-field label,
+.qf-activity-transport-type-field label,
+.qf-activity-transport-rate-field label,
+.qf-activity-total-adult-field label,
+.qf-activity-total-child-field label,
+.qf-price-type-field label,
+.qf-price-adult-field label,
+.qf-price-cwb-field label,
+.qf-price-cnb-field label,
+.qf-payment-mode-field label,
+.qf-final-remark-field label{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+}
+
+.qf-agency-name-field select,
+.qf-contact-name-field input,
+.qf-mobile-no-field input,
+.qf-agency-city-field input,
+.qf-summary-nights-field input,
+.qf-summary-adults-field input,
+.qf-summary-cwb-field input,
+.qf-summary-cnb-field input,
+.qf-summary-infant-field input,
+.qf-hotel-checkin-field input,
+.qf-hotel-nights-field input,
+.qf-hotel-checkout-field input,
+.qf-hotel-city-field select,
+.qf-hotel-name-field select,
+.qf-hotel-room-category-field select,
+.qf-hotel-room-field input,
+.qf-hotel-awb-field input,
+.qf-hotel-cwb-field input,
+.qf-hotel-cnb-field input,
+.qf-hotel-awb-rate-field input,
+.qf-hotel-cwb-rate-field input,
+.qf-hotel-cnb-rate-field input,
+.qf-hotel-status-field select,
+.qf-hotel-confirmation-number-field input,
+.qf-hotel-confirmed-by-field input,
+.qf-hotel-billing-status-field select,
+.qf-hotel-supplier-field select,
+.qf-hotel-currency-field select,
+.qf-hotel-room-rate-field input,
+.qf-hotel-remark-field input,
+.qf-activity-date-field input,
+.qf-activity-pickup-time-field input,
+.qf-activity-tour-type-field input,
+.qf-activity-name-field select,
+.qf-activity-transport-type-field select,
+.qf-price-type-field select,
+.qf-price-adult-field input,
+.qf-price-cwb-field input,
+.qf-price-cnb-field input,
+.qf-payment-mode-field select,
+.qf-final-remark-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #fff;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.qf-agency-name-field select:focus,
+.qf-contact-name-field input:focus,
+.qf-mobile-no-field input:focus,
+.qf-agency-city-field input:focus,
+.qf-summary-nights-field input:focus,
+.qf-summary-adults-field input:focus,
+.qf-summary-cwb-field input:focus,
+.qf-summary-cnb-field input:focus,
+.qf-summary-infant-field input:focus,
+.qf-hotel-checkin-field input:focus,
+.qf-hotel-nights-field input:focus,
+.qf-hotel-checkout-field input:focus,
+.qf-hotel-city-field select:focus,
+.qf-hotel-name-field select:focus,
+.qf-hotel-room-category-field select:focus,
+.qf-hotel-room-field input:focus,
+.qf-hotel-awb-field input:focus,
+.qf-hotel-cwb-field input:focus,
+.qf-hotel-cnb-field input:focus,
+.qf-hotel-awb-rate-field input:focus,
+.qf-hotel-cwb-rate-field input:focus,
+.qf-hotel-cnb-rate-field input:focus,
+.qf-hotel-status-field select:focus,
+.qf-hotel-confirmation-number-field input:focus,
+.qf-hotel-confirmed-by-field input:focus,
+.qf-hotel-billing-status-field select:focus,
+.qf-hotel-supplier-field select:focus,
+.qf-hotel-currency-field select:focus,
+.qf-hotel-room-rate-field input:focus,
+.qf-hotel-remark-field input:focus,
+.qf-activity-date-field input:focus,
+.qf-activity-pickup-time-field input:focus,
+.qf-activity-tour-type-field input:focus,
+.qf-activity-name-field select:focus,
+.qf-activity-transport-type-field select:focus,
+.qf-price-type-field select:focus,
+.qf-price-adult-field input:focus,
+.qf-price-cwb-field input:focus,
+.qf-price-cnb-field input:focus,
+.qf-payment-mode-field select:focus,
+.qf-final-remark-field input:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
+.qf-hotel-name-field select:disabled,
+.qf-hotel-room-category-field select:disabled{
+    background: #f4f7fb;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* read-only auto-calculated fields, shared look */
+.qf-summary-total-pax-field input,
+.qf-hotel-total-field input,
+.qf-activity-tour-code-field input,
+.qf-activity-adult-rate-field input,
+.qf-activity-child-rate-field input,
+.qf-activity-transport-rate-field input,
+.qf-activity-total-adult-field input,
+.qf-activity-total-child-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #e8400a;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #e8400a;
+    background: #fff5f0;
+    outline: none;
+}
+
+/* {agency details row} */
+.qf-agency-row {
+    display: flex;
+    gap: 18px;
+    flex-direction: row;
+}
+
+.qf-agency-row > div{
+    flex: 1 1 200px;
+}
+
+/* {head pax / tour summary row} */
+.qf-pax-summary-row{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.qf-pax-summary-row > div{
+    flex: 0 1 140px;
+}
+
+/* {hotel block} */
+.qf-hotel-block-card{
+    background: #f9fbff;
+    border: 1.5px solid #0f172a;
+    border-left: 4px solid #0f3460;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.qf-hotel-block-card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.qf-hotel-block-number{
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f3460;
+}
+
+.qf-remove-hotel-block-btn,
+.qf-remove-activity-block-btn{
+    background: none;
+    border: 1.5px solid #fecaca;
+    color: #e8400a;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.qf-remove-hotel-block-btn:hover,
+.qf-remove-activity-block-btn:hover{
+    background: #fff5f0;
+}
+
+.qf-hotel-row-dates,
+.qf-hotel-row-occupancy2,
+.qf-hotel-row-supplier{
+    display: flex;
+    gap: 12px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-bottom: 14px;
+    padding-bottom: 4px;
+}
+
+.qf-hotel-row-dates > *,
+.qf-hotel-row-occupancy2 > *,
+.qf-hotel-row-supplier > *{
+    flex: 0 0 150px;
+}
+
+.qf-hotel-nights-field,
+.qf-hotel-room-field{
+    flex: 0 0 80px;
+}
+
+.qf-hotel-awb-field,
+.qf-hotel-cwb-field,
+.qf-hotel-cnb-field{
+    flex: 0 0 90px;
+}
+
+.qf-hotel-awb-rate-field,
+.qf-hotel-cwb-rate-field,
+.qf-hotel-cnb-rate-field,
+.qf-hotel-room-rate-field{
+    flex: 0 0 110px;
+}
+
+.qf-hotel-total-field{
+    flex: 0 0 100px;
+}
+
+.qf-hotel-status-field,
+.qf-hotel-billing-status-field{
+    flex: 0 0 110px;
+}
+
+.qf-hotel-confirmation-number-field,
+.qf-hotel-supplier-field{
+    flex: 0 0 140px;
+}
+
+.qf-hotel-confirmed-by-field{
+    flex: 0 0 130px;
+}
+
+.qf-hotel-currency-field{
+    flex: 0 0 100px;
+}
+
+.qf-hotel-remark-field{
+    flex: 0 0 220px;
+}
+
+.qf-supplier-subheading,
+.qf-transport-subheading{
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #5b6779;
+    padding-top: 4px;
+    margin-bottom: 12px;
+    border-top: 1.5px dashed #d0dce8;
+    padding-top: 12px;
+}
+
+.qf-add-hotel-block-btn,
+.qf-add-activity-block-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background: #fff;
+    border: 1.5px dashed #93c5fd;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a56db;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+}
+
+.qf-add-hotel-block-btn:hover,
+.qf-add-activity-block-btn:hover{
+    background: #eff6ff;
+    border-color: #1a56db;
+}
+
+/* {activity block} */
+.qf-activity-block-card{
+    background: #f9fbff;
+    border: 1.5px solid #d0dce8;
+    border-left: 4px solid #0f3460;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.qf-activity-block-card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.qf-activity-block-number{
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f3460;
+}
+
+.qf-activity-row-datetime,
+.qf-activity-row-tour,
+.qf-activity-row-rates,
+.qf-activity-row-totals{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.qf-activity-row-datetime > div,
+.qf-activity-row-tour > div,
+.qf-activity-row-rates > div,
+.qf-activity-row-totals > div{
+    flex: 1 1 180px;
+}
+
+.qf-activity-row-name,
+.qf-activity-row-transport,
+.qf-activity-row-transport-rate{
+    margin-bottom: 14px;
+    max-width: 320px;
+}
+
+/* {price & payment row} */
+.qf-price-payment-row{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.qf-price-payment-row > div{
+    flex: 1 1 160px;
+}
+
+/* {save status banners} */
+.qf-save-status-success,
+.qf-save-status-error{
+    margin: 0 28px 16px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.qf-save-status-success{
+    background: #f0fdf4;
+    border: 1.5px solid #10b981;
+    color: #0f5132;
+}
+
+.qf-save-status-error{
+    background: #fff5f0;
+    border: 1.5px solid #e8400a;
+    color: #b8380a;
+}
+
+/* {form actions} */
+.qf-form-actions-row{
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin: 0 28px 32px;
+    padding: 18px 24px;
+    background: #fff;
+    border: 1px solid #d0dce8;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+}
+
+.qf-save-quote-btn{
+    height: 42px;
+    padding: 0 28px;
+    background: #0f3460;
+    border: 1.5px solid #0f3460;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .15s, box-shadow .15s;
+}
+
+.qf-save-quote-btn:hover{
+    background: #143d78;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .25);
+}
+
+.qf-back-btn-footer{
+    height: 42px;
+    padding: 0 28px;
+    background: #fff;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    color: #e8400a;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+}
+
+.qf-back-btn-footer:hover{
+    border-color: #e8400a;
+    background: #fff5f0;
+}
+
+@media (max-width: 640px){
+    .qf-ref-row,
+    .qf-agency-row,
+    .qf-pax-summary-row,
+    .qf-activity-row-datetime,
+    .qf-activity-row-tour,
+    .qf-activity-row-rates,
+    .qf-activity-row-totals,
+    .qf-price-payment-row{
+        flex-direction: column;
+    }
+
+    .qf-form-actions-row{
+        flex-direction: column-reverse;
+    }
+
+    .qf-save-quote-btn,
+    .qf-back-btn-footer{
+        width: 100%;
+    }
+}

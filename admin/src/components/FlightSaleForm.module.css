@@ -1,0 +1,708 @@
+/* ═══════════════════════════════════════════
+   THEME: TripNavigate / Holiday Chacha
+   Primary  : #0f3460  (deep navy blue)
+   Accent   : #e8400a  (orange-red dates)
+   Header   : #1a3a6b  (table headers)
+   Light BG : #eef4ff  (bill-to panel)
+   Border   : #d0dce8
+═══════════════════════════════════════════ */
+
+:root {
+  --t-navy:    #0f3460;
+  --t-blue:    #1a3a6b;
+  --t-orange:  #e8400a;
+  --t-orange-dark: #b8380a; /* accent orange, darkened for small/thin text so it stays readable */
+  --t-sky:     #2563eb;
+  --t-light:   #eef4ff;
+  --t-border:  #d0dce8;
+  --t-text:    #1a1a2e;
+  --t-muted:   #4a5568;
+  --t-faint:   #5b6779;     /* secondary/meta text — readable at ~4.7:1 on white, unlike the old #94a3b8 (~2.5:1) */
+  --t-white:   #ffffff;
+  --t-bg:      #f4f7fb;
+  --t-mint:    #10b981;
+  --t-red:     #dc2626;
+}
+
+/* ── PAGE ─────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: var(--t-bg);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── NAVBAR ───────────────────────────────── */
+.navbar {
+  background: var(--t-navy);
+  border-bottom: 3px solid var(--t-orange);
+  height: 56px;
+  padding: 0 28px;
+  display: flex; align-items: center; gap: 16px;
+  position: sticky; top: 0; z-index: 20;
+  box-shadow: 0 2px 12px rgba(15,52,96,.3);
+}
+.navLogo {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 16px; font-weight: 700; color: #fff;
+  letter-spacing: -.2px;
+}
+.navLogo span:first-child {
+  background: var(--t-orange);
+  border-radius: 8px;
+  padding: 2px 6px;
+  font-size: 18px;
+}
+.navCenter { flex: 1; display: flex; justify-content: center; }
+.scanBadge {
+  font-size: 12px; font-weight: 600; padding: 5px 14px;
+  background: rgba(255,255,255,.15); color: #fff;
+  border: 1px solid rgba(255,255,255,.3); border-radius: 100px;
+}
+.navRight { display: flex; gap: 10px; }
+.btnGhost {
+  padding: 7px 16px;
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.25);
+  border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; color: #fff;
+  transition: all .15s;
+}
+.btnGhost:hover { background: rgba(255,255,255,.2); }
+
+/* ── BODY ─────────────────────────────────── */
+.body { padding: 20px 28px; max-width: 1400px; margin: 0 auto; width: 100%; }
+
+/* ── UPLOAD HEADER ───────────────────────── */
+.uploadHeader { margin-bottom: 18px; }
+
+.dropZone {
+  border: 2px dashed var(--t-border);
+  border-radius: 10px;
+  background: var(--t-white);
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  padding: 5px 25px;
+  min-height: 50px;
+  display: flex; align-items: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.dropZone:hover { border-color: var(--t-sky); background: var(--t-light); }
+.dragging        { border-color: var(--t-sky); background: var(--t-light); }
+.hasFile         { border-color: var(--t-mint); background: #f0fdf4; border-style: solid; }
+
+.dropInner { display: flex; align-items: center; gap: 14px; width: 100%; }
+.uploadIco { font-size: 26px; }
+.scanSpin  { font-size: 26px; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.dropTitle { font-size: 13px; font-weight: 600; color: var(--t-text); }
+.dropTitle u { color: var(--t-sky); }
+.dropSub   { font-size: 12px; color: var(--t-faint); margin-left: auto; }
+
+.scanBar {
+  flex: 1; max-width: 200px; height: 6px;
+  background: #e2e8f0; border-radius: 100px; overflow: hidden;
+}
+.scanFill {
+  height: 6px; border-radius: 100px;
+  background: linear-gradient(90deg, var(--t-navy), var(--t-sky));
+  animation: scanAnim 2s ease forwards;
+}
+@keyframes scanAnim { from{width:0} to{width:95%} }
+
+.fileChips { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.fileChip {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #f0fdf4; border: 1px solid #bbf7d0;
+  border-radius: 8px; padding: 6px 12px; font-size: 12px;
+}
+.chipName  { font-weight: 600; color: var(--t-text); max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chipSize  { color: var(--t-mint); font-size: 11px; }
+.chipDel   { background: none; border: none; color: var(--t-faint); cursor: pointer; font-size: 13px; }
+.chipDel:hover { color: var(--t-red); }
+.addMore   {
+  font-size: 12px; color: var(--t-sky); font-weight: 600;
+  cursor: pointer; border: 1.5px dashed #93c5fd;
+  border-radius: 7px; padding: 5px 12px; background: var(--t-light);
+}
+
+/* ── FORM CARD ────────────────────────────── */
+.formCard {
+}
+
+.formInner { padding: 28px 32px; }
+
+/* ── BANNERS ──────────────────────────────── */
+.errBanner {
+  background: #fff5f5; border: 1.5px solid #fca5a5;
+  border-radius: 8px; padding: 12px 16px;
+  font-size: 12px; color: #b91c1c; margin-bottom: 16px;
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.successBanner {
+  background: #f0fdf4; border: 1.5px solid #bbf7d0;
+  border-radius: 8px; padding: 12px 16px;
+  font-size: 13px; font-weight: 600; color: #15803d; margin-bottom: 16px;
+}
+
+/* ── ROWS ─────────────────────────────────── */
+.row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  padding: 0px 20px;
+}
+
+/* Compact common-fields strip: every field is a narrow bordered
+   column (label as a solid header bar, input underneath) laid out
+   in a single horizontally-scrolling row — never wraps, so all
+   details for one entry stay on one line like the reference sheet. */
+.compactRow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  overflow-x: auto;
+  margin: 8px 20px 18px;
+  border: 1.5px solid #475569;
+  border-radius: 0px;
+  background: #fff;
+}
+.compactRow::-webkit-scrollbar { height: 8px; }
+.compactRow::-webkit-scrollbar-thumb { background: var(--t-border); border-radius: 4px; }
+.compactRow::-webkit-scrollbar-track { background: transparent; }
+.paxCard .compactRow { margin: 0 0 4px; }
+
+/* Invoice Details: fixed 8-column fr-grid instead of a scrolling strip —
+   fr tracks always sum to the container's width, so nothing ever
+   overflows/scrolls/wraps, at any viewport size. Weights follow each
+   field's expected content length (Party Name widest, Ref/Invoice Type narrowest). */
+.invoiceGrid {
+  display: grid;
+  grid-template-columns: 1fr 2.2fr 1.8fr 2.5fr 1.8fr 1.6fr 1.4fr 1.2fr;
+  overflow: visible;
+}
+.invoiceGrid .fg { min-width: 0; }
+
+/* ── PASSENGERS TABLE — same fr-grid technique as .invoiceGrid, but
+   with a header row of labels followed by one data row per passenger.
+   Grid auto-flow wraps every 13 cells into a new row automatically. ── */
+.paxTable {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 1.1fr 0.7fr 1fr 1fr 0.6fr 0.6fr 1fr 1fr 1fr 1fr 1fr;
+  border: 1.5px solid #475569;
+  margin: 8px 20px 18px;
+  background: #fff;
+}
+.paxTableHead {
+  background: var(--t-navy); color: #fff;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px;
+  text-align: center; padding: 7px 8px;
+  border-right: 1px solid rgba(255,255,255,.15);
+  border-bottom: 1px solid #475569;
+}
+.paxTable > div:nth-child(13n) { border-right: none; }
+.paxTable > div:nth-last-child(-n+13) { border-bottom: none; }
+.paxTableCell {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 6px;
+  border-right: 1px solid #475569;
+  border-bottom: 1px solid #475569;
+  min-width: 0;
+}
+.paxTableCell input,
+.paxTableCell select {
+  width: 100%; height: 36px;
+  border: none; background: transparent;
+  padding: 6px 6px; font-size: 12.5px; font-family: inherit;
+  color: var(--t-text); outline: none; min-width: 0;
+}
+.paxTableCell input:focus,
+.paxTableCell select:focus { background: var(--t-light); }
+.paxTablePartyCell {
+  flex-direction: row; align-items: flex-start; gap: 4px;
+  padding: 6px 8px;
+}
+.paxTablePartyCell .checkboxLbl { font-size: 11.5px; }
+.paxTablePartyCell .overrideInput { flex: 0 0 auto; width: 100%; min-width: 0; height: 28px; font-size: 11.5px; }
+.paxTablePartyCell .removePaxBtn { padding: 0px 5px; font-size: 10px; margin-left: 0; }
+
+/* ── FLIGHT SEGMENT TABLE (booking-level, its own card below Invoice
+   Details) — same fr-grid technique + cell styling as .paxTable, an
+   11-track layout to fit the segment columns. ── */
+.segTable {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr 0.6fr 0.6fr 0.7fr 0.7fr 1fr 0.9fr 0.9fr 0.9fr 0.9fr;
+  border: 1.5px solid #475569;
+  margin: 8px 20px 18px;
+  background: #fff;
+}
+.segTable > div:nth-child(11n) { border-right: none; }
+.segTable > div:nth-last-child(-n+11) { border-bottom: none; }
+.segIndexCell { justify-content: center; font-weight: 700; color: var(--t-navy); }
+.paxBlockTable { margin: 0 0 12px; }
+.addSegmentWrap { display: flex; justify-content: center; margin: 0 0 18px; }
+.paxRowTotal {
+  font-size: 13px; font-weight: 700;
+  color: var(--t-orange-dark);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── FIELD GROUP (one column inside a strip) ─ */
+.fg {
+  display: flex; flex-direction: column; gap: 0;
+  min-width: 128px; flex-shrink: 0;
+  border-right: 1px solid #475569;
+}
+.fg:last-child { border-right: none; }
+
+.fgLabel {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--t-navy);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 7px 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+/* ── INPUTS ───────────────────────────────── */
+.fg input,
+.fg select {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 0;
+  font-size: 12.5px;
+  font-family: inherit;
+  background: #fff;
+  color: var(--t-text);
+  outline: none;
+  transition: background .15s, box-shadow .15s;
+  width: 100%;
+  height: 38px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.fg input::placeholder { color: #8a95a6; font-size: 12px; }
+
+/* 24-hour time picker: trigger button + Hours/Minutes scroll-column dropdown */
+.timePicker { position: relative; width: 100%; }
+.timePickerTrigger {
+  width: 100%; height: 38px;
+  border: none; background: #fff; font-family: inherit;
+  font-size: 12.5px; color: var(--t-text); text-align: left;
+  padding: 8px 10px; cursor: pointer;
+}
+.timePickerTrigger:hover { background: var(--t-light); }
+.timePickerDropdown {
+  position: absolute; top: calc(100% + 4px); left: 0; z-index: 50;
+  display: flex;
+  background: #fff; border: 1.5px solid #475569; border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.18);
+  overflow: hidden;
+}
+.timePickerCol {
+  width: 58px; max-height: 190px; overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+.timePickerCol + .timePickerCol { border-left: 1px solid var(--t-border); }
+.timePickerOpt, .timePickerOptActive {
+  border: none; background: none; cursor: pointer;
+  padding: 7px 0; text-align: center; font-size: 12.5px;
+  font-family: 'JetBrains Mono', monospace; color: var(--t-text);
+  flex-shrink: 0;
+}
+.timePickerOpt:hover { background: var(--t-light); }
+.timePickerOptActive { background: var(--t-sky); color: #fff; font-weight: 700; }
+.fg input:focus,
+.fg select:focus {
+  z-index: 1;
+  position: relative;
+}
+.fg input:not(:placeholder-shown) { color: var(--t-text); font-weight: 500; }
+.fg .hintErr { padding: 0 8px 5px; }
+
+.ok  { background: #f0fdf4 !important; box-shadow: inset 0 0 0 2px var(--t-mint) !important; }
+.err { background: #fff5f5 !important; box-shadow: inset 0 0 0 2px var(--t-red) !important; }
+.hintErr { font-size: 10px; color: var(--t-red); margin-top: 3px; font-weight: 600; }
+
+/* ── RADIO CHIPS ──────────────────────────── */
+.radioGroup { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+.radioChip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 16px; border-radius: 6px;
+  border: 1.5px solid var(--t-border);
+  background: #f8fafc;
+  font-size: 12px; font-weight: 500;
+  cursor: pointer; transition: all .15s;
+  color: var(--t-muted); height: 36px;
+}
+.radioChip input { display: none; }
+.radioChip:hover { border-color: var(--t-navy); color: var(--t-navy); }
+.radioActive {
+  background: var(--t-navy); border-color: var(--t-navy);
+  color: #fff; font-weight: 700;
+}
+
+/* ── SECTION HEAD ─────────────────────────── */
+.sectionHead {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; font-weight: 700; color: var(--t-white);
+  text-transform: uppercase; letter-spacing: 4px;
+  background: var(--t-blue);
+  margin: 15px 0px 0px;
+  padding: 8px 18px;
+  border-radius: 5px 5px 0 0;
+}
+/* ── ACCORDION (collapsible common-field sections) ─────── */
+.accordionHead {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%;
+  font-size: 12px; font-weight: 600; color: var(--t-white);
+  text-transform: uppercase; letter-spacing: 3px;
+  background: var(--t-blue);
+  margin: 15px 0 25px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none; cursor: pointer; font-family: inherit;
+  transition: background .15s;
+}
+.accordionHead:hover { background: var(--t-navy); }
+.accordionHeadOpen { border-radius: 6px 6px 0 0; margin-bottom: 0; }
+.accordionTitle { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.accordionRight { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.accordionSubtitle {
+  font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0;
+  color: rgba(255,255,255,.88);
+  max-width: 380px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.accordionChevron { font-size: 11px; flex-shrink: 0; width: 12px; text-align: center; }
+.accordionBody {
+  /* border: 1.5px solid #475569; */ border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding-top: 14px;
+  margin: 0 0 25px;
+  background: #fbfdff;
+}
+.accordionBody .compactRow { margin-bottom: 14px; }
+.invoiceAccordionBody { border: 1.5px solid #475569; border-top: none; }
+
+.sectionHead em {
+  font-style: normal; font-weight: 500; text-transform: none;
+  letter-spacing: 0; color: rgba(255,255,255,.85); font-size: 11px; margin-left: 6px;
+}
+.paxBtns { display: flex; align-items: center; gap: 8px; }
+.paxCount {
+  font-size: 12px; color: #fff;
+  font-weight: 600; text-transform: none;
+  background: rgba(255,255,255,.2);
+  padding: 3px 10px; border-radius: 100px;
+}
+.manageBtn {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .3px;
+  color: var(--t-navy); background: #fff;
+  border: none; border-radius: 6px;
+  padding: 6px 14px; cursor: pointer;
+  transition: all .15s;
+}
+.manageBtn:hover { background: var(--t-orange); color: #fff; }
+
+/* ── PASSENGER SUMMARY (main page, read-only preview) ───── */
+.paxSummary {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  padding: 16px 20px;
+  margin-bottom: 25px;
+  border: 1.5px solid #475569; border-top: none;
+  border-radius: 0 0 8px 8px;
+  background: #fbfdff;
+}
+.paxChip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #f9fbff; border: 1.5px solid var(--t-border);
+  border-left: 3px solid var(--t-navy);
+  border-radius: 8px; padding: 8px 14px;
+  font-size: 12px; cursor: pointer; transition: all .15s;
+}
+.paxChip:hover { border-color: var(--t-sky); box-shadow: 0 2px 8px rgba(37,99,235,.1); }
+.paxChipName { font-weight: 700; color: var(--t-text); }
+.paxChipName em { color: var(--t-faint); font-style: normal; font-weight: 500; }
+.paxChipMeta { color: var(--t-muted); font-size: 11px; }
+.paxChipTotal {
+  font-weight: 700; color: var(--t-orange-dark);
+  font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+}
+.partyOverrideTag {
+  font-size: 10.5px; font-weight: 600; color: #92400e;
+  background: #fef3c7; border-radius: 100px; padding: 2px 8px;
+}
+.addPaxChip {
+  display: inline-flex; align-items: center;
+  font-size: 12px; font-weight: 600; color: var(--t-sky);
+  border: 1.5px dashed #93c5fd; background: var(--t-light);
+  border-radius: 8px; padding: 8px 16px; cursor: pointer;
+}
+.addPaxChip:hover { background: #dbeafe; }
+
+.matchTagOk, .matchTagWarn {
+  font-size: 10px; font-weight: 700; border-radius: 100px;
+  padding: 2px 8px; white-space: nowrap;
+}
+.matchTagOk   { background: #dcfce7; color: #15803d; }
+.matchTagWarn { background: #fef3c7; color: #92400e; }
+
+/* ── PASSENGERS POPUP ─────────────────────────────────── */
+.modalOverlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(15,23,42,.55);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.modalCard {
+  background: #fff; border-radius: 14px;
+  width: 100%; max-width: 1080px; max-height: 88vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  overflow: hidden;
+}
+.modalHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--t-navy); color: #fff;
+  padding: 16px 22px; font-size: 15px; font-weight: 700;
+  flex-shrink: 0;
+}
+.modalHeader em { font-style: normal; font-weight: 500; opacity: .7; margin-left: 4px; }
+.modalClose {
+  background: rgba(255,255,255,.12); border: none; color: #fff;
+  width: 28px; height: 28px; border-radius: 7px; cursor: pointer;
+  font-size: 13px;
+}
+.modalClose:hover { background: rgba(255,255,255,.25); }
+.modalBody {
+  padding: 20px 22px; overflow-y: auto; flex: 1;
+  background: var(--t-bg);
+}
+.modalFooter {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 22px; border-top: 2px solid var(--t-border);
+  background: var(--t-light); flex-shrink: 0; gap: 16px; flex-wrap: wrap;
+}
+
+/* ── PARTY OVERRIDE MODAL (passenger-specific Party/GSTIN/Place of Supply) ── */
+.overrideModalField { margin-bottom: 14px; }
+.overrideModalField:last-child { margin-bottom: 0; }
+.overrideModalField .overrideInput { width: 100%; }
+
+/* ── PASSENGER CARD (inside popup) ──────────────────────── */
+.paxCard {
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid var(--t-navy);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  background: #fff;
+}
+.paxCardTop {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.paxCardHeaderTitle {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 700; color: var(--t-navy);
+}
+/* Field group inside a passenger card (Name/Ticket/Phone row, and the
+   Fare Details amounts row) — each FG carries its own explicit width,
+   this just lets them sit inline and wrap if the card gets too narrow. */
+.paxCardFields { display: flex; flex-wrap: wrap; gap: 10px; flex: 1; }
+
+/* Passenger Information (left, 75%) + Same Party (right, 25%), side by side */
+.paxInfoGrid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.paxSubheading {
+  font-size: 11px; font-weight: 700; color: var(--t-muted);
+  text-transform: uppercase; letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+/* Passenger Information fields fill the left column instead of staying fixed-width */
+.paxInfoFields { overflow-x: visible; }
+.paxInfoFields .fg { min-width: 0; }
+
+.paxPartyWrap { display: flex; flex-direction: column; height: 35%; }
+.paxPartyCol { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+.checkboxLbl {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 600; color: var(--t-muted);
+  cursor: pointer; white-space: nowrap;
+}
+.checkboxLbl input { width: 15px; height: 15px; accent-color: var(--t-navy); cursor: pointer; }
+.checkboxLbl strong { color: var(--t-navy); }
+.overrideInput {
+  flex: 1; min-width: 180px;
+  padding: 7px 10px; border: 1.5px solid #fbbf24;
+  background: #fffbeb; border-radius: 6px;
+  font-size: 12.5px; outline: none; height: 32px;
+}
+.overrideInput:focus { border-color: var(--t-orange); box-shadow: 0 0 0 3px rgba(232,64,10,.12); }
+
+.addPaxBtn {
+  width: 100%; padding: 12px;
+  border: 1.5px dashed #93c5fd; background: var(--t-light);
+  color: var(--t-sky); font-size: 13px; font-weight: 700;
+  border-radius: 9px; cursor: pointer;
+}
+.addPaxBtn:hover { background: #dbeafe; }
+
+/* ── PASSENGER BLOCK ──────────────────────── */
+.paxBlock {
+  border: 1.5px solid #475569;
+  border-left: 4px solid var(--t-navy);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  background: #f9fbff;
+}
+.paxLabel {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
+  font-size: 12px; font-weight: 700; color: var(--t-blue);
+}
+.paxNum {
+  width: 26px; height: 26px; border-radius: 6px;
+  background: var(--t-navy); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+}
+.removePaxBtn {
+  margin-left: auto; background: #fff1f2;
+  border: 1px solid #fca5a5; border-radius: 6px;
+  padding: 4px 12px; font-size: 11px;
+  color: var(--t-red); cursor: pointer; font-weight: 600;
+}
+.removePaxBtn:hover { background: #fee2e2; }
+
+/* ── PAX TOTAL ────────────────────────────── */
+.paxTotalRow {
+  display: flex; align-items: center; justify-content: flex-end; gap: 14px;
+  padding: 12px 0 4px;
+  border-top: 1.5px dashed var(--t-border);
+  margin-top: 12px;
+}
+.paxTotalLabel { font-size: 12px; font-weight: 600; color: var(--t-muted); }
+.paxTotalVal   {
+  font-size: 16px; font-weight: 700;
+  color: var(--t-orange);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -.3px;
+}
+
+/* ── CIRCLE BTN ───────────────────────────── */
+.circleBtn {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: var(--t-light);
+  border: 1.5px solid var(--t-border);
+  color: var(--t-navy); font-size: 18px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .15s; flex-shrink: 0;
+}
+.circleBtn:hover { background: var(--t-navy); color: #fff; border-color: var(--t-navy); }
+
+/* ── ADDITIONAL DETAILS & SUMMARY  +  GRAND TOTAL — two cards, side by side ── */
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  align-items: stretch;
+  gap: 20px;
+  margin: 15px 20px 25px;
+}
+@media (max-width: 900px) {
+  .bottomGrid { grid-template-columns: 1fr; }
+}
+.bottomCard {
+  display: flex; flex-direction: column;
+  border: 1.5px solid #475569;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.bottomCard .accordionHead { margin: 0; border-radius: 0; cursor: default; }
+.bottomCard .accordionHead:hover { background: var(--t-blue); }
+.bottomCard .accordionBody { flex: 1; margin: 0; border: none; border-radius: 0; }
+.bottomCard .gtVal { font-size: 16px; }
+.bottomCard:last-child .accordionBody {
+  display: flex; flex-direction: row; align-items: center; justify-content: center;
+  gap: 14px; padding: 16px;
+}
+.bottomCard:last-child .saveBtn { width: 65%; justify-content: center; }
+
+/* ── FOOTER (Grand Total + Save, its own standalone section) ── */
+.footer {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--t-light);
+  border: 1.5px solid #475569;
+  border-radius: 8px;
+  padding: 22px 28px;
+  flex-wrap: wrap; gap: 16px;
+  margin: 15px 20px 25px;
+}
+.footActions { display: flex; align-items: center; gap: 12px; }
+
+.grandTotal {
+  display: flex; align-items: center; gap: 18px;
+  font-size: 13px; font-weight: 700; color: var(--t-blue);
+}
+.gtVal {
+  font-size: 28px; font-weight: 700;
+  color: var(--t-orange);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -.5px;
+}
+
+.saveBtn {
+  width: 200px;
+  padding: 12px 36px;
+  background: var(--t-navy);
+  color: #fff; border: none; border-radius: 9px;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; letter-spacing: .3px;
+  box-shadow: 0 4px 16px rgba(15,52,96,.35);
+  transition: all .2s;
+  display: flex; align-items: center; gap: 8px;
+  height: 46px;
+  position: relative;
+  overflow: hidden;
+}
+.saveBtn::after {
+  content: '';
+  position: absolute; left: 0; top: 0;
+  width: 4px; height: 100%;
+  background: var(--t-orange);
+}
+.saveBtn:hover {
+  background: var(--t-blue);
+  box-shadow: 0 6px 24px rgba(15,52,96,.45);
+  transform: translateY(-1px);
+}
+.saveBtn:active { transform: translateY(0); }
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width:1200px) { .row { grid-template-columns:repeat(4,1fr); gap:14px; } }
+@media (max-width:900px)  { .row { grid-template-columns:repeat(3,1fr); gap:12px; } .paxInfoGrid { grid-template-columns: 1fr; gap: 16px; } }
+@media (max-width:600px)  {
+  .row { grid-template-columns:repeat(2,1fr); gap:10px; }
+  .fg { min-width: 108px; }
+  .modalOverlay { padding: 0; }
+  .modalCard { max-height: 100vh; height: 100vh; border-radius: 0; }
+  .paxCardTop { flex-wrap: wrap; }
+}

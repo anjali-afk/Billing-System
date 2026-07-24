@@ -1,0 +1,841 @@
+.header{
+    background: var(--t-navy);
+    border-bottom: 3px solid var(--t-orange);
+    height: 56px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 2px 12px rgba(15, 52, 96, .3);
+}
+.header h1{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.2px;
+}
+.header-content{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.2px;
+}
+.header-line{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.back-button{
+    padding: 7px 16px;
+    background: rgba(255, 255, 255, .1);
+    border: 1.5px solid rgba(255, 255, 255, .25);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+    transition: all .15s;
+}
+
+/* {deal section} */
+.deal-form{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 20px 28px;
+    padding: 18px 24px;
+    background: #fff;
+    border: 1px solid #1a1a2e;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    flex-wrap: wrap;
+}
+
+.deal-divider{
+    width: 1px;
+    align-self: stretch;
+    background: #e2e8f0;
+}
+
+.deal-input,
+.ref-number,
+.total-pax{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.deal-input label,
+.ref-number label,
+.total-pax label{
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+}
+
+.deal-input input,
+.ref-number input{
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.deal-input input{
+    min-width: 180px;
+}
+
+.deal-input input:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
+.ref-number input{
+    width: 110px;
+    background: #f4f7fb;
+    color: #5b6779;
+    font-style: italic;
+    cursor: not-allowed;
+}
+
+.total-pax .pax-group{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.pax-counter{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 10px;
+    background: #f4f7fb;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+}
+
+.pax-icon{
+    font-size: 16px;
+}
+
+.pax-counter input{
+    width: 40px;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f3460;
+    text-align: center;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.pax-counter input::-webkit-outer-spin-button,
+.pax-counter input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.pax-unit{
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.pax-sep{
+    color: #d0dce8;
+    font-weight: 300;
+}
+
+@media (max-width: 640px){
+    .deal-form{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .deal-divider{
+        width: auto;
+        height: 1px;
+    }
+}
+
+/* {booking information section} */
+.booking-info-box{
+    margin: 0 28px 24px;
+    background: #fff;
+    border: 1px solid #1a1a2e;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    overflow: hidden;
+}
+
+.booking-info-header{
+    padding: 12px 24px;
+    background: #0f3460;
+}
+
+.booking-info-title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .2px;
+}
+
+.booking-info-body{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px 24px;
+}
+
+/* shared label/control look for every field in this section — kept as one
+   grouped rule so the many per-field classes below don't repeat declarations,
+   while every field element still carries its own single unique className */
+.guest-name-field label,
+.destination-field label,
+.hotel-name-field label,
+.tour-type-field label,
+.booking-type-field label,
+.handled-by-field label,
+.entry-by-field label,
+.tour-date-field label,
+.checkin-field label,
+.checkout-field label,
+.nights-field label{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+}
+
+.guest-name-field input,
+.destination-field select,
+.hotel-name-field select,
+.tour-type-field select,
+.booking-type-field select,
+.handled-by-field select,
+.entry-by-field input,
+.tour-date-field input,
+.checkin-field input,
+.checkout-field input,
+.nights-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #fff;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.guest-name-field input:focus,
+.destination-field select:focus,
+.hotel-name-field select:focus,
+.tour-type-field select:focus,
+.booking-type-field select:focus,
+.handled-by-field select:focus,
+.entry-by-field input:focus,
+.tour-date-field input:focus,
+.checkin-field input:focus,
+.checkout-field input:focus,
+.nights-field input:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
+.guest-name-row{
+    display: flex;
+    gap: 18px;
+    width: 100%;
+}
+
+.guest-name-row > div{
+    flex: 1;
+}
+
+.destination-row,
+.hotel-name-row{
+    width: 100%;
+}
+
+.tour-booking-handled-row,
+.entry-tourdate-row,
+.checkin-checkout-row{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.tour-type-field,
+.booking-type-field,
+.handled-by-field{
+    flex: 1 1 200px;
+}
+
+.entry-by-field,
+.tour-date-field,
+.checkin-field,
+.checkout-field{
+    flex: 1 1 220px;
+}
+
+.nights-row{
+    width: 100%;
+}
+
+.nights-field{
+    width: 140px;
+}
+
+@media (max-width: 640px){
+    .tour-booking-handled-row,
+    .entry-tourdate-row,
+    .checkin-checkout-row{
+        flex-direction: column;
+    }
+}
+
+/* {room & passenger details section} */
+.room-info-box{
+    margin: 0 28px 24px;
+    background: #fff;
+    border: 1px solid #1a1a2e;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    overflow: hidden;
+}
+
+.room-info-header{
+    padding: 12px 24px;
+    background: #0f3460;
+}
+
+.room-info-title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .2px;
+}
+
+.room-info-body{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px 24px;
+}
+
+.rooms-count-field label,
+.total-room-field label,
+.awb-field label,
+.cwb-field label,
+.no-bed-field label,
+.rate-field label,
+.awb-amount-field label,
+.cwb-amount-field label,
+.no-bed-amount-field label,
+.room-total-field label,
+.room-status-field label,
+.room-confirmation-number-field label,
+.room-billing-status-field label,
+.rp-total-pax-field label,
+.rp-adults-field label,
+.rp-child-field label,
+.rp-infant-field label,
+.room-category-field label,
+.meal-plan-field label,
+.extra-bed-field label,
+.room-preference-field label{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+}
+
+.rooms-count-field input,
+.total-room-field input,
+.awb-field input,
+.cwb-field input,
+.no-bed-field input,
+.rate-field input,
+.room-status-field select,
+.room-confirmation-number-field input,
+.room-billing-status-field select,
+.rp-total-pax-field input,
+.rp-adults-field input,
+.rp-child-field input,
+.rp-infant-field input,
+.room-category-field select,
+.meal-plan-field select,
+.extra-bed-field select,
+.room-preference-field select{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #fff;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.rooms-count-field input:focus,
+.total-room-field input:focus,
+.awb-field input:focus,
+.cwb-field input:focus,
+.no-bed-field input:focus,
+.rate-field input:focus,
+.room-status-field select:focus,
+.room-confirmation-number-field input:focus,
+.room-billing-status-field select:focus,
+.rp-total-pax-field input:focus,
+.rp-adults-field input:focus,
+.rp-child-field input:focus,
+.rp-infant-field input:focus,
+.room-category-field select:focus,
+.meal-plan-field select:focus,
+.extra-bed-field select:focus,
+.room-preference-field select:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
+/* {read-only auto-calculated amounts, same highlighted look as grand-total-field} */
+.awb-amount-field input,
+.cwb-amount-field input,
+.no-bed-amount-field input,
+.room-total-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #e8400a;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #e8400a;
+    background: #fff5f0;
+    outline: none;
+}
+
+.room-count-row,
+.room-pref-row{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.room-count-row > div{
+    flex: 0 1 125px;
+}
+
+.rp-total-pax-field,
+.rp-adults-field,
+.rp-child-field,
+.rp-infant-field{
+    flex: 0 0 90px;
+}
+
+.room-pref-row > div{
+    flex: 1 1 200px;
+}
+
+.room-preference-field{
+    flex: 0 0 160px;
+}
+
+@media (max-width: 640px){
+    .room-count-row,
+    .room-pref-row{
+        flex-direction: column;
+    }
+}
+
+/* {supplier details section} */
+.supplier-info-box{
+    margin: 0 28px 24px;
+    background: #fff;
+    border: 1px solid #1a1a2e;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    overflow: hidden;
+}
+
+.supplier-info-header{
+    padding: 12px 24px;
+    background: #0f3460;
+}
+
+.supplier-info-title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .2px;
+}
+
+.supplier-info-body{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px 24px;
+}
+
+.supplier-name-field label,
+.confirmation-number-field label,
+.hotel-email-field label,
+.hotel-status-field label,
+.billing-status-field label,
+.bill-to-field label,
+.voucher-status-field label,
+.remark-field label{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+}
+
+.supplier-name-field input,
+.confirmation-number-field input,
+.hotel-email-field input,
+.hotel-status-field select,
+.billing-status-field select,
+.bill-to-field select,
+.voucher-status-field select,
+.remark-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #fff;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.supplier-name-field input:focus,
+.confirmation-number-field input:focus,
+.hotel-email-field input:focus,
+.hotel-status-field select:focus,
+.billing-status-field select:focus,
+.bill-to-field select:focus,
+.voucher-status-field select:focus,
+.remark-field input:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
+.supplier-contact-row{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.supplier-contact-row > *{
+    flex: 0 1 125px;
+}
+
+.confirmation-number-field{
+    flex: 0 0 125px;
+}
+
+.hotel-email-field{
+    flex: 0 1 160px;
+}
+
+.hotel-status-field,
+.billing-status-field,
+.voucher-status-field{
+    flex: 0 0 110px;
+}
+
+.remark-field{
+    width: 160px;
+    flex: 0 0 160px;
+}
+
+@media (max-width: 640px){
+    .supplier-contact-row{
+        flex-direction: column;
+    }
+}
+
+/* {price details section} */
+.price-info-box{
+    margin: 0 28px 24px;
+    background: #fff;
+    border: 1px solid #1a1a2e;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    overflow: hidden;
+}
+
+.price-info-header{
+    padding: 12px 24px;
+    background: #0f3460;
+}
+
+.price-info-title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .2px;
+}
+
+.price-info-body{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px 24px;
+}
+
+.room-price-field label,
+.extra-bed-price-field label,
+.child-price-field label,
+.taxes-field label,
+.discount-field label,
+.grand-total-field label,
+.due-date-field label{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+}
+
+.room-price-field input,
+.extra-bed-price-field input,
+.child-price-field input,
+.taxes-field input,
+.discount-field input,
+.due-date-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #fff;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.room-price-field input:focus,
+.extra-bed-price-field input:focus,
+.child-price-field input:focus,
+.taxes-field input:focus,
+.discount-field input:focus,
+.due-date-field input:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
+.grand-total-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #e8400a;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #e8400a;
+    background: #fff5f0;
+    outline: none;
+}
+
+.price-row{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.price-row > *{
+    flex: 0 1 125px;
+}
+
+.grand-total-field{
+    flex: 0 1 180px;
+}
+
+.due-date-field{
+    flex: 0 1 150px;
+}
+
+@media (max-width: 640px){
+    .price-row{
+        flex-direction: column;
+    }
+}
+
+/* {payment details section} */
+.payment-info-box{
+    margin: 0 28px 24px;
+    background: #fff;
+    border: 1px solid #1a1a2e;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    overflow: hidden;
+}
+
+.payment-info-header{
+    padding: 12px 24px;
+    background: #0f3460;
+}
+
+.payment-info-title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .2px;
+}
+
+.payment-info-body{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 22px 24px;
+}
+
+.advance1-field label,
+.advance2-field label,
+.advance3-field label,
+.advance4-field label,
+.balance-amount-field label,
+.payment-status-field label{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+}
+
+.advance1-field input,
+.advance2-field input,
+.advance3-field input,
+.advance4-field input,
+.payment-status-field select{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #fff;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.advance1-field input:focus,
+.advance2-field input:focus,
+.advance3-field input:focus,
+.advance4-field input:focus,
+.payment-status-field select:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
+.balance-amount-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #e8400a;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #e8400a;
+    background: #fff5f0;
+    outline: none;
+}
+
+.payment-row{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.payment-row > *{
+    flex: 0 1 125px;
+}
+
+.balance-amount-field{
+    flex: 0 1 150px;
+}
+
+.payment-status-field{
+    flex: 0 1 150px;
+}
+
+@media (max-width: 640px){
+    .payment-row{
+        flex-direction: column;
+    }
+}
+
+.save-status-success,
+.save-status-error{
+    margin: 0 28px 16px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.save-status-success{
+    background: #f0fdf4;
+    border: 1.5px solid #10b981;
+    color: #0f5132;
+}
+
+.save-status-error{
+    background: #fff5f0;
+    border: 1.5px solid #e8400a;
+    color: #b8380a;
+}
+
+/* {form actions} */
+.form-actions-row{
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin: 0 28px 32px
