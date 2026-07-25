@@ -283,7 +283,7 @@ function HotelQuoteForm() {
 
               <div className="qf-hotel-row-occupancy2">
                 <div className="qf-hotel-awb-field">
-                  <label htmlFor={`hotelAwb-${i}`}>Adult With Bed</label>
+                  <label htmlFor={`hotelAwb-${i}`}>AWB</label>
                   <input type="number" id={`hotelAwb-${i}`} min="0" placeholder="0" value={block.awb} onChange={(e) => updateHotelBlock(i, "awb", e.target.value)} />
                 </div>
 

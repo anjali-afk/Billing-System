@@ -63,7 +63,7 @@
 .deal-divider{
     width: 1px;
     align-self: stretch;
-    background: #e2e8f0;
+    background: #0f172a;
 }
 
 .deal-input,
@@ -107,7 +107,7 @@
 }
 
 .ref-number input{
-    width: 110px;
+    width: 140px;
     background: #f4f7fb;
     color: #5b6779;
     font-style: italic;
@@ -176,6 +176,109 @@
     }
 }
 
+/* {passenger details table} */
+.passenger-info-box{
+    margin: 0 28px 24px;
+    background: #fff;
+    border: 1px solid #1a1a2e;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+    overflow: hidden;
+}
+
+.passenger-info-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 24px;
+    background: #0f3460;
+}
+
+.passenger-info-title{
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .2px;
+}
+
+.passenger-table-dropdown-btn{
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid rgba(255, 255, 255, .35);
+    border-radius: 6px;
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, transform .15s;
+}
+
+.passenger-table-dropdown-btn:hover{
+    background: rgba(255, 255, 255, .15);
+    border-color: #fff;
+}
+
+.passenger-table-dropdown-btn.open{
+    transform: rotate(180deg);
+}
+
+.passenger-info-body{
+    padding: 22px 24px;
+    overflow-x: auto;
+}
+
+.passenger-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.passenger-table th{
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #0f3460;
+    text-align: left;
+    border-bottom: 1.5px solid #d0dce8;
+    white-space: nowrap;
+}
+
+.passenger-table td{
+    padding: 6px 10px;
+}
+
+.passenger-table td:first-child{
+    width: 32px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #5b6779;
+    text-align: center;
+}
+
+.passenger-table input{
+    width: 100%;
+    min-width: 130px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #fff;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.passenger-table input:focus{
+    border-color: #e8400a;
+    box-shadow: 0 0 0 3px rgba(232, 64, 10, .12);
+}
+
 /* {booking information section} */
 .booking-info-box{
     margin: 0 28px 24px;
@@ -187,6 +290,10 @@
 }
 
 .booking-info-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     padding: 12px 24px;
     background: #0f3460;
 }
@@ -198,6 +305,44 @@
     letter-spacing: .2px;
 }
 
+.booking-row-controls{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.booking-row-btn{
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid rgba(255, 255, 255, .35);
+    border-radius: 6px;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+}
+
+.booking-row-btn:hover:not(:disabled){
+    background: rgba(255, 255, 255, .15);
+    border-color: #fff;
+}
+
+.booking-row-btn:disabled{
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.booking-row-count{
+    min-width: 18px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+}
+
 .booking-info-body{
     display: flex;
     flex-direction: column;
@@ -205,11 +350,31 @@
     padding: 22px 24px;
 }
 
+.booking-row-block{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.booking-row-block + .booking-row-block{
+    padding-top: 16px;
+    border-top: 1px dashed #0f172a;
+}
+
+.booking-row-label{
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #e8400a;
+}
+
 /* shared label/control look for every field in this section — kept as one
    grouped rule so the many per-field classes below don't repeat declarations,
    while every field element still carries its own single unique className */
 .guest-name-field label,
 .destination-field label,
+.city-field label,
 .hotel-name-field label,
 .tour-type-field label,
 .booking-type-field label,
@@ -230,6 +395,7 @@
 
 .guest-name-field input,
 .destination-field select,
+.city-field input,
 .hotel-name-field select,
 .tour-type-field select,
 .booking-type-field select,
@@ -254,6 +420,7 @@
 
 .guest-name-field input:focus,
 .destination-field select:focus,
+.city-field input:focus,
 .hotel-name-field select:focus,
 .tour-type-field select:focus,
 .booking-type-field select:focus,
@@ -277,17 +444,44 @@
     flex: 1;
 }
 
+.guest-name-row > .guest-name-field,
+.guest-name-row > .checkout-field{
+    flex: 0 1 150px;
+}
+
+.guest-name-row > .city-field,
+.guest-name-row > .room-category-field,
+.guest-name-row > .meal-plan-field{
+    flex: 0 1 130px;
+}
+
 .destination-row,
 .hotel-name-row{
     width: 100%;
 }
 
-.tour-booking-handled-row,
 .entry-tourdate-row,
 .checkin-checkout-row{
     display: flex;
     gap: 18px;
     flex-wrap: wrap;
+}
+
+.tour-booking-handled-row{
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.room-category-field,
+.meal-plan-field{
+    flex: 0 0 110px;
+}
+
+.rooms-count-field{
+    flex: 0 0 60px;
 }
 
 .tour-type-field,
@@ -308,11 +502,11 @@
 }
 
 .nights-field{
-    width: 140px;
+    flex: 0 0 60px !important;
+    width: 60px !important;
 }
 
 @media (max-width: 640px){
-    .tour-booking-handled-row,
     .entry-tourdate-row,
     .checkin-checkout-row{
         flex-direction: column;
@@ -353,6 +547,7 @@
 .awb-field label,
 .cwb-field label,
 .no-bed-field label,
+.markup-field label,
 .rate-field label,
 .awb-amount-field label,
 .cwb-amount-field label,
@@ -383,9 +578,10 @@
 .awb-field input,
 .cwb-field input,
 .no-bed-field input,
-.rate-field input,
+.markup-field input,
 .room-status-field select,
 .room-confirmation-number-field input,
+.room-billing-status-field input,
 .room-billing-status-field select,
 .rp-total-pax-field input,
 .rp-adults-field input,
@@ -408,14 +604,30 @@
     transition: border-color .15s, box-shadow .15s;
 }
 
+.rate-field input{
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1.5px solid #e8400a;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #fff;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
 .rooms-count-field input:focus,
 .total-room-field input:focus,
 .awb-field input:focus,
 .cwb-field input:focus,
 .no-bed-field input:focus,
+.markup-field input:focus,
 .rate-field input:focus,
 .room-status-field select:focus,
 .room-confirmation-number-field input:focus,
+.room-billing-status-field input:focus,
 .room-billing-status-field select:focus,
 .rp-total-pax-field input:focus,
 .rp-adults-field input:focus,
@@ -453,8 +665,35 @@
     flex-wrap: wrap;
 }
 
-.room-count-row > div{
+.room-count-row > *{
     flex: 0 1 125px;
+}
+
+.awb-field,
+.cwb-field,
+.no-bed-field{
+    flex: 0 0 60px;
+}
+
+.markup-field,
+.rate-field{
+    flex: 0 0 100px;
+}
+
+.awb-amount-field,
+.cwb-amount-field,
+.no-bed-amount-field,
+.room-total-field{
+    flex: 0 0 100px;
+}
+
+.room-status-field,
+.room-billing-status-field{
+    flex: 0 0 100px;
+}
+
+.room-confirmation-number-field{
+    flex: 0 0 90px;
 }
 
 .rp-total-pax-field,
@@ -584,7 +823,7 @@
 
 .remark-field{
     width: 160px;
-    flex: 0 0 160px;
+    flex: 0 0 190px;
 }
 
 @media (max-width: 640px){
@@ -838,4 +1077,63 @@
     display: flex;
     justify-content: flex-end;
     gap: 14px;
-    margin: 0 28px 32px
+    margin: 0 28px 32px;
+    padding: 18px 24px;
+    background: #fff;
+    /* border: 1px solid #1a1a2e; */
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .06);
+}
+
+.save-button{
+    height: 42px;
+    padding: 0 28px;
+    background: #0f3460;
+    border: 1.5px solid #0f3460;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .15s, box-shadow .15s;
+}
+
+.save-button:disabled{
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.save-button:hover{
+    background: #143d78;
+    box-shadow: 0 2px 10px rgba(15, 52, 96, .25);
+}
+
+.reset-button{
+    height: 42px;
+    padding: 0 28px;
+    background: #fff;
+    border: 1.5px solid #d0dce8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    color: #e8400a;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+}
+
+.reset-button:hover{
+    border-color: #e8400a;
+    background: #fff5f0;
+}
+
+@media (max-width: 640px){
+    .form-actions-row{
+        flex-direction: column-reverse;
+    }
+    .save-button,
+    .reset-button{
+        width: 100%;
+    }
+}

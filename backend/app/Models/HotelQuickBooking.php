@@ -16,6 +16,41 @@ class HotelQuickBooking extends Model
 {
     use HasFactory;
 
+    public static function generateUniqueRefNo(?string $dealId, ?string $date): string
+    {
+        $normalizedDealId = trim((string) ($dealId ?? ''));
+        if ($normalizedDealId === '') {
+            $normalizedDealId = '0';
+        }
+
+        $normalizedDate = $date ? date('d-m-y', strtotime($date)) : date('d-m-y');
+        $prefix = $normalizedDate . $normalizedDealId;
+
+        $baseQuery = self::query()
+            ->where('deal_id', $normalizedDealId)
+            ->where('ref_no', 'like', $prefix . '%');
+
+        $existing = $baseQuery->orderByDesc('id')->first();
+
+        $lastSequence = 0;
+        if ($existing && $existing->ref_no) {
+            $suffix = substr($existing->ref_no, strlen($prefix));
+            if (preg_match('/^(\d{1,2})$/', $suffix, $matches)) {
+                $lastSequence = (int) $matches[1];
+            }
+        }
+
+        $sequence = $lastSequence + 1;
+        $candidate = $prefix . str_pad((string) $sequence, 2, '0', STR_PAD_LEFT);
+
+        while (self::where('ref_no', $candidate)->exists()) {
+            $sequence++;
+            $candidate = $prefix . str_pad((string) $sequence, 2, '0', STR_PAD_LEFT);
+        }
+
+        return $candidate;
+    }
+
     protected $fillable = [
         'ref_no',
         'deal_id',

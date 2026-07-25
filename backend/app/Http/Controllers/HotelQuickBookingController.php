@@ -33,6 +33,17 @@ class HotelQuickBookingController extends Controller
      * HotelBookingController's invoice numbers) instead of trusting the
      * client's decorative "Auto" field.
      */
+    public function previewRef(Request $request)
+    {
+        $dealId = $request->query('deal');
+        $date = $request->query('date', now()->toDateString());
+
+        return response()->json([
+            'success' => true,
+            'ref' => HotelQuickBooking::generateUniqueRefNo($dealId, $date),
+        ], 200);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -52,8 +63,13 @@ class HotelQuickBookingController extends Controller
             ], 422);
         }
 
+        $dealId = $request->input('deal');
+        $tourDate = $request->input('tourDate');
+        $refNo = HotelQuickBooking::generateUniqueRefNo($dealId, $tourDate);
+
         $booking = HotelQuickBooking::create([
-            'deal_id' => $request->input('deal'),
+            'deal_id' => $dealId,
+            'ref_no' => $refNo,
             'adults' => $this->int($request->input('adults')) ?? 0,
             'children' => $this->int($request->input('children')) ?? 0,
 
@@ -104,8 +120,10 @@ class HotelQuickBookingController extends Controller
             'payment_status' => $request->input('paymentStatus', 'Pending'),
         ]);
 
-        $booking->ref_no = 'HQB-' . str_pad((string) $booking->id, 6, '0', STR_PAD_LEFT);
-        $booking->save();
+        if (empty($booking->ref_no)) {
+            $booking->ref_no = $refNo;
+            $booking->save();
+        }
 
         return response()->json([
             'success' => true,

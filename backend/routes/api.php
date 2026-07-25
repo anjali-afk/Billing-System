@@ -27,6 +27,7 @@ Route::get('/hotel-bookings', [HotelBookingController::class, 'index']);
 Route::post('/hotel-bookings/{id}/sync-tally', [HotelBookingController::class, 'syncTally']);
 Route::get('/hotel-bookings/{id}/invoice', [HotelBookingController::class, 'invoice']);
 
+Route::get('/hotel-quick-bookings/preview-ref', [HotelQuickBookingController::class, 'previewRef']);
 Route::post('/hotel-quick-bookings', [HotelQuickBookingController::class, 'store']);
 Route::get('/hotel-quick-bookings', [HotelQuickBookingController::class, 'index']);
 
